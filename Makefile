@@ -4,7 +4,7 @@ build-spark-base:
 		docker build -t cs1193/docker-spark-base -f ./images/spark-base/spark-base.Dockerfile .
 
 build-spark-master:
-		docker build -t cs1193/docker-spark-master -f ./images/spark-master/spark-master.Dockerfile .
+		docker build --build-arg spark_base_image=cs1193/docker-spark-base -t cs1193/docker-spark-master -f ./images/spark-master/spark-master.Dockerfile .
 
 build-spark-worker:
 		docker build -t cs1193/docker-spark-worker -f ./images/spark-worker/spark-worker.Dockerfile .

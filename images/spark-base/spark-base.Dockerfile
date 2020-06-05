@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-LABEL maintainer="Chandresh Rajkumar Manonmani <cs1193@gmail.com>"
+LABEL maintainer="Chandresh Rajkumar Manonmani <cs1193@gmail.com> (chandreshrm.name)"
 
 ENV DAEMON_RUN true
 ENV SPARK_VERSION 2.4.5
