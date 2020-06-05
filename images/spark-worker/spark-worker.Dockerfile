@@ -4,7 +4,7 @@ FROM ${spark_base_image}
 
 LABEL maintainer="Chandresh Rajkumar Manonmani <cs1193@gmail.com> (chandreshrm.name)"
 
-COPY images/spark-master/worker.sh /
+COPY images/spark-worker/worker.sh /
 
 ENV SPARK_WORKER_WEBUI_PORT 8081
 ENV SPARK_WORKER_LOG /spark/logs
