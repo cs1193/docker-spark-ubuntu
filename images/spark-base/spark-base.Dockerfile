@@ -16,3 +16,18 @@ RUN apt-get install -qq -y gnupg2 wget
 RUN wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
 RUN add-apt-repository -y https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 RUN apt-get install -qq -y adoptopenjdk-8-openj9
+
+WORKDIR /tmp
+
+RUN wget --no-verbose https://downloads.lightbend.com/scala/${SCALA_VERSION}/scala-${SCALA_VERSION}.deb
+RUN dpkg -i scala-${SCALA_VERSION}.deb
+
+RUN wget --no-verbose https://downloads.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
+RUN tar -xzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
+RUN mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} ${SPARK_HOME}
+ENV PATH ${PATH}:${SPARK_HOME}/bin
+
+RUN apt-get install -qq -y python3 python3-pip
+RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1
+
+ENV PYTHONHASHSEED 1
