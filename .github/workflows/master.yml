@@ -17,12 +17,12 @@ jobs:
 
     - name: Build the Docker image
       run: |
-        docker build -t cs1193/docker-spark-base -f ./images/spark-base/spark-base.Dockerfile .
-        docker build --build-arg spark_base_image=cs1193/docker-spark-base -t cs1193/docker-spark-master -f ./images/spark-master/spark-master.Dockerfile .
-        docker build --build-arg spark_base_image=cs1193/docker-spark-base -t cs1193/docker-spark-worker -f ./images/spark-worker/spark-worker.Dockerfile .
+        docker build -t cs1193/docker-spark-base:latest -f ./images/spark-base/spark-base.Dockerfile .
+        docker build --build-arg spark_base_image=cs1193/docker-spark-base -t cs1193/docker-spark-master:latest -f ./images/spark-master/spark-master.Dockerfile .
+        docker build --build-arg spark_base_image=cs1193/docker-spark-base -t cs1193/docker-spark-worker:latest -f ./images/spark-worker/spark-worker.Dockerfile .
 
     - name: Push the Docker image
       run: |
-        docker push cs1193/docker-spark-base
-        docker push cs1193/docker-spark-master
-        docker push cs1193/docker-spark-worker
+        docker push cs1193/docker-spark-base:latest
+        docker push cs1193/docker-spark-master:latest
+        docker push cs1193/docker-spark-worker:latest
