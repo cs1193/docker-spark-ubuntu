@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  spark-master:
+    build:
+      context: ../
+      dockerfile: images/spark-master/spark-master.Dockerfile
+      args:
+        spark_base_image: cs1193/spark-base:latest
+    container_name: spark-master
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+  spark-worker-1:
+    build:
+      context: ../
+      dockerfile: images/spark-worker/spark-worker.Dockerfile
+      args:
+        spark_base_image: cs1193/spark-base:latest
+    container_name: spark-worker-1
+    depends_on:
+      - spark-master
+    ports:
+      - "8081:8081"
+    environment:
+      - "SPARK_MASTER=spark://spark-master:7077"
+  spark-worker-2:
+    build:
+      context: ../
+      dockerfile: images/spark-worker/spark-worker.Dockerfile
+      args:
+        spark_base_image: cs1193/spark-base:latest
+    container_name: spark-worker-2
+    depends_on:
+      - spark-master
+    ports:
+      - "8082:8081"
+    environment:
+      - "SPARK_MASTER=spark://spark-master:7077"
+  spark-worker-3:
+    build:
+      context: ../
+      dockerfile: images/spark-worker/spark-worker.Dockerfile
+      args:
+        spark_base_image: cs1193/spark-base:latest
+    container_name: spark-worker-3
+    depends_on:
+      - spark-master
+    ports:
+      - "8083:8081"
+    environment:
+      - "SPARK_MASTER=spark://spark-master:7077"
