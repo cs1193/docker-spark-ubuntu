@@ -9,6 +9,6 @@ ENV SPARK_MASTER_PORT 7077
 ENV SPARK_APPLICATION_PYTHON_LOCATION index.py
 ENV SPARK_APPLICATION_ARGS ""
 
-COPY submit.sh /
+COPY images/spark-submit/submit.sh /
 
 CMD ["/bin/bash", "/submit.sh"]
